@@ -15,7 +15,7 @@ export class ReportComand extends Command {
     }
 
     handleCommand(): void {
-    this.bot.command('report', async (ctx) => {
+    this.bot.command('report', async (ctx: IBotContext) => {
         const tasks = await this.task.getFInishTask()
         
         const json = JSON.parse(JSON.stringify(tasks)).map((task:Itask) => {

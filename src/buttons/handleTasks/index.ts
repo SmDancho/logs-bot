@@ -66,7 +66,7 @@ export class HanndleTasksButton extends Button {
       )
 
 
-      this.bot.action('closeTask', async (ctx) => {
+      this.bot.action('closeTask', async (ctx: IBotContext) => {
         if (ctx.from === undefined) {
           throw new Error('ctx.from is undefined')
         }
