@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "@prisma/client": "^5.10.2",
-    "date-fns-tz": "^2.0.1",
     "telegraf": "^4.15.3",
     "telegraf-session-local": "^2.1.1"
   },
