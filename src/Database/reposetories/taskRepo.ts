@@ -10,8 +10,8 @@ export class taskRepo extends DatabaseService {
 
     public async create(data: Itask, ctx: Context) {
         const existTask = await this.getActieveTask(ctx)
-
-        if (existTask) {
+    
+        if (existTask && existTask.dateCreated) {
             const spendedTime = intervalToDuration(
                 {
                   start: existTask.dateCreated, 
@@ -29,7 +29,7 @@ export class taskRepo extends DatabaseService {
                 )
                 .then(() => ctx.reply(`задача ${existTask.title} закрыта`));
 
-            await this.delete(existTask.id)
+            await this.delete(existTask.id as number)
         }
 
         return this.currentTask.create({
@@ -38,24 +38,32 @@ export class taskRepo extends DatabaseService {
         )
     }
 
-    public async close(data:any) {
+    public async close(data: Itask): Promise<Itask> {
+
+        if (!data.totalTime && typeof data.totalTime !== "string") {
+            throw new Error('total time is not valid');
+        }
+
         return this.endTasks.create({
-                data
+            data: {
+                ...data,
+                totalTime: data.totalTime,
+                dateCreated: data.dateCreated, 
             }
-        )
+        });
     }
 
-    public async getActieveTask(ctx: any): Promise<any> {
+    public async getActieveTask(ctx: Context): Promise<Itask | null> {
         return this.currentTask.findFirst(
             {
                 where: {
-                    userId: ctx.from.id,
+                    userId: ctx.from?.id,
                 }
             }
         )
     }
 
-    public async getFInishTask(): Promise<any> {
+    public async getFInishTask(): Promise<Itask[]> {
         return this.endTasks.findMany()
     }
 

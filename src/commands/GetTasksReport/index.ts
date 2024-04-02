@@ -44,11 +44,11 @@ export class ReportComand extends Command {
         }
         )
 
-        if(!tasks.length) {
+        if(!tasks || !tasks.length ) {
             ctx.reply('no data found')
         }
         else {
-            ctx.reply(`tasks for ${new Date(tasks[0].dateEnd).toDateString()}: \n \n${json}`)
+            ctx.reply(`tasks for ${tasks[0].dateEnd}: \n \n${json}`)
         }
     
     }

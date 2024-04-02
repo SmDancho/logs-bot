@@ -20,7 +20,7 @@ export interface Itask {
     status?: Status
     author?: string
     userId: number
-    dateCreated?: Date | string
+    dateCreated: Date | string 
     dateEnd?: Date | string
-    totalTime?: string
+    totalTime?: string 
 }

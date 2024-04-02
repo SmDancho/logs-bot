@@ -48,6 +48,7 @@ export class HanndleTasksButton extends Button {
           }
           else {    
             const data: Itask = {
+              dateCreated: new Date(),
               title: this.taskName.text,
               status: "ACTIVE",
               userId: ctx.from.id
@@ -85,8 +86,9 @@ export class HanndleTasksButton extends Button {
 
     private async _closeTask(ctx: IBotContext) {
       const currentTask = await this.task.getActieveTask(ctx);
-      if(ctx.from === undefined) {
-        return
+
+      if(!ctx.from || !currentTask || !currentTask.id || !currentTask.dateCreated ) {
+        throw new Error("ctx.from or currentTask is undefined")
       }
 
       const spendedTime = intervalToDuration(
