@@ -10,7 +10,7 @@ export class StartCommand extends Command {
 
     handleCommand(): void {
         this.bot.start(
-            (ctx) => {
+            (ctx: IBotContext) => {
                 ctx.reply(
                 'Введите название задачи что бы начать отслеживать ее выполнение'                
                 )
