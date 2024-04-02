@@ -8,7 +8,6 @@
   "devDependencies": {
     "@types/node": "^20.11.17",
     "date-fns": "^3.5.0",
-    "date-time-format-timezone": "^1.0.22",
     "dotenv": "^16.4.5",
     "nodemon": "^3.0.3",
     "prisma": "^5.10.2",
