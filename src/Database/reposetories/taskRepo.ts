@@ -1,14 +1,15 @@
 import { DatabaseService } from '../dbService.service'
 import { intervalToDuration } from "date-fns";
 import { Itask,IBotContext  } from '../../types/interfaces';
-import { Context } from 'Telegraf'
+
 
 export class taskRepo extends DatabaseService {
+    
     constructor() {
         super()
     }
 
-    public async create(data: Itask, ctx: Context) {
+    public async create(data: Itask, ctx: IBotContext) {
         const existTask = await this.getActieveTask(ctx)
     
         if (existTask && existTask.dateCreated) {
@@ -53,7 +54,7 @@ export class taskRepo extends DatabaseService {
         });
     }
 
-    public async getActieveTask(ctx: Context): Promise<Itask | null> {
+    public async getActieveTask(ctx: IBotContext): Promise<Itask | null> {
         return this.currentTask.findFirst(
             {
                 where: {

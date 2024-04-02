@@ -1,6 +1,5 @@
 import { Telegraf , Context } from 'Telegraf'
 import { IConfig, IBotContext } from './types/interfaces';
-import LocalSession from 'telegraf-session-local'
 import {Command} from  './commands/command.class'
 import {Button} from './buttons/buttons.class'
 import { StartCommand } from './commands/Start';
