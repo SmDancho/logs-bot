@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node dist/",
+    "start": "node dist/",
     "start:dev": "nodemon src/index.ts"
   },
   "author": "Danil Tereshenko",
