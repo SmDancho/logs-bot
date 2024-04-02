@@ -1,4 +1,5 @@
 import { Context, Markup } from 'Telegraf'
+import { Status } from '@prisma/client'
 
 export interface IConfig {
     token: string,
@@ -11,4 +12,15 @@ export interface IBotContext extends Context {
         start: Date
         end: Date
     }
+}
+
+export interface Itask {
+    id?: number
+    title: string
+    status?: Status
+    author?: string
+    userId: number
+    dateCreated?: Date | string
+    dateEnd?: Date | string
+    totalTime?: string
 }

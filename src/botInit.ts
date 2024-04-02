@@ -2,16 +2,17 @@ import { Telegraf , Context } from 'Telegraf'
 import { IConfig, IBotContext } from './types/interfaces';
 import LocalSession from 'telegraf-session-local'
 import {Command} from  './commands/command.class'
-import {CreatButton} from './buttons/buttons.class'
+import {Button} from './buttons/buttons.class'
 import { StartCommand } from './commands/Start';
-import {CreateButton} from './buttons/CreateTask'
+import {HanndleTasksButton} from './buttons/handleTasks'
+import {ReportComand} from "./commands/GetTasksReport"
 
 export class botInit { 
     private token: string;
     private bot: Telegraf<IBotContext>
     private readonly config: IConfig;
     private commands: Command[] = [];
-    private buttons: CreatButton[] = [];
+    private buttons: Button[] = [];
 
     constructor(config: IConfig, ) {
         this.token = config.token;
@@ -20,8 +21,8 @@ export class botInit {
     }
 
     init() {
-        this.commands = [new StartCommand(this.bot)]
-        this.buttons = [new CreateButton(this.bot)]
+        this.commands = [new StartCommand(this.bot), new ReportComand(this.bot)]
+        this.buttons = [new HanndleTasksButton(this.bot)]
 
         for (const command of this.commands) {
             command.handleCommand()
