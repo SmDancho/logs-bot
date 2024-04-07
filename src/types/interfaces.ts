@@ -1,4 +1,4 @@
-import { Context } from 'Telegraf'
+import { Context } from 'telegraf'
 import { Status } from '@prisma/client'
 
 export interface IConfig {

@@ -1,4 +1,4 @@
-import { Telegraf , Markup} from 'Telegraf'
+import { Telegraf , Markup } from 'telegraf'
 import { Button } from "../buttons.class"
 import type {IBotContext} from "../../types/interfaces"
 import { userRepo } from '../../Database/reposetories/userRepo'

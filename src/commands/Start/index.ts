@@ -1,4 +1,4 @@
-import { Telegraf , Markup} from 'Telegraf'
+import { Telegraf , Markup} from 'telegraf'
 import { Command } from "../command.class"
 import type {IBotContext} from "../../types/interfaces"
 

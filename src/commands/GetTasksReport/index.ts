@@ -1,4 +1,4 @@
-import { Telegraf } from 'Telegraf'
+import { Telegraf } from 'telegraf'
 import { Command } from "../command.class"
 import type {IBotContext} from "../../types/interfaces"
 import { taskRepo } from '../../Database/reposetories/taskRepo'

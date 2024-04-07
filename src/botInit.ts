@@ -1,4 +1,4 @@
-import { Telegraf , Context } from 'Telegraf'
+import { Telegraf , Context } from 'telegraf'
 import { IConfig, IBotContext } from './types/interfaces';
 import {Command} from  './commands/command.class'
 import {Button} from './buttons/buttons.class'
