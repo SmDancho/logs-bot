@@ -64,8 +64,12 @@ export class taskRepo extends DatabaseService {
         )
     }
 
-    public async getFInishTask(): Promise<Itask[]> {
-        return this.endTasks.findMany()
+    public async getFinishTask(ctx: IBotContext): Promise<Itask[]> {
+        return this.endTasks.findMany({
+            where: {
+                userId: ctx.from?.id,
+            }
+        })
     }
 
     public async delete(id:number) {
