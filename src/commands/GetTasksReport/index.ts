@@ -30,7 +30,7 @@ export class ReportComand extends Command {
     await Promise.allSettled(
       JSON.parse(JSON.stringify(tasks)).map((task:Itask) => {
         const report = this.createReport(task, createObjectSctructer)
-              return report
+          return report
         }
       )
     )
