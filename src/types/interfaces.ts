@@ -17,6 +17,7 @@ export interface IBotContext extends Context {
 export interface Itask {
     id?: number
     title: string
+    status?: Status
     author?: string
     userId: number
     dateCreated: Date | string 
