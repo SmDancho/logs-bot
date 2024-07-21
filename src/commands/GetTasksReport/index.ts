@@ -48,8 +48,7 @@ export class ReportComand extends Command {
       else {
       const json = JSON.parse(JSON.stringify(withNoDuplicates))
       json.forEach(
-           //@ts-ignore
-        (item:any) => {
+        (item: Itask[]) => {
           const [value] = Object.entries(item)
           ctx.reply(
               `${value[0]}  
