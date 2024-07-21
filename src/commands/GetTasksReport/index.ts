@@ -50,8 +50,8 @@ export class ReportComand extends Command {
       json.forEach(
         (item: Itask[]) => {
           const [value] = Object.entries(item)
-          ctx.reply(
-              `${value[0]}  
+          ctx.reply( 
+              `${value[0]}
 
 ${value[1]}`)
           }
