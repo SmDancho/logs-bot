@@ -16,7 +16,7 @@ export class ReportComand extends Command {
 
   handleCommand(): void {
     this.bot.command('report', async (ctx: IBotContext) => {
-      const tasks = await this.task.getFinishTask(ctx)
+    const tasks = await this.task.getFinishTask(ctx)
             
     const createObjectSctructer = tasks.map(
       (task) => {
@@ -46,14 +46,38 @@ export class ReportComand extends Command {
         ctx.reply('no data found')
       }
       else {
-        ctx.reply(`${JSON.stringify(withNoDuplicates, null, 2)}`)
+      const json = JSON.parse(JSON.stringify(withNoDuplicates))
+      json.forEach(
+           //@ts-ignore
+        (item:any) => {
+          const [value] = Object.entries(item)
+          ctx.reply(
+              `${value[0]}  
+
+${value[1]}`)
+          }
+        )
       }
-                  
+                    
     }
   )
 }
   async createReport(task: Itask ,  uniqueArr: { [key: string]: string[] }[] ) {
-    
+
+    if(!task.totalTime) {
+      throw Error(`Invalid time value: `);
+    }
+
+    const [minutes, seconds] = task.totalTime.split(':').map(Number);
+  
+ 
+    const fractionalMinutes = seconds / 60;
+
+    // Combine the minutes and fractional minutes
+    const totalMinutes = minutes + fractionalMinutes;
+  
+    const totalTimeInPercents  = totalMinutes.toFixed(2); 
+
     const findArr = uniqueArr.find(
       (arr) => Object.keys(arr)[0]
       === new Date(task['dateCreated']).toDateString()
@@ -70,9 +94,6 @@ export class ReportComand extends Command {
     const start = timeZone(toDate(task.dateCreated))
     const end = timeZone(toDate(task.dateEnd))
 
-    const countHoursValue = task.totalTime.replace(':', ',')
-    .split(',')
-
     task.dateCreated = start
     task.dateEnd = end
 
@@ -81,7 +102,7 @@ export class ReportComand extends Command {
     }
 
     const keys = Object.keys(findArr)
-    findArr[keys[0]].push(`${task.title} ${task.dateCreated} ${task.dateEnd} ${task.totalTime} ${countHoursValue[0]}.${countHoursValue[1]}\n`)
+    findArr[keys[0]].push(`${task.title} ${task.dateCreated} ${task.dateEnd} ${task.totalTime} ${totalTimeInPercents}\n`)
     return findArr
   }
 }
